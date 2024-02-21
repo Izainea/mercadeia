@@ -1,10 +1,10 @@
-﻿**Clase 3: Análisis de datos con copilotos LLM**
+﻿# Análisis de datos con pandas
 
 Usaremos el dataset de kaggle "Marketing Data"
-# **Objetivo**
+## **Objetivo**
 
-En esta clase aprenderemos a usar los copilotos LLM para programar un análisis de datos de una tabla, usando el lenguaje natural y las instrucciones del sistema. El análisis de datos nos permitirá explorar, visualizar y obtener información sobre el comportamiento de los clientes de una empresa de productos gourmet y sus respuestas a las campañas de marketing.
-# **Dataset**
+En esta clase aprenderemos a programar un análisis de datos de una tabla. El análisis de datos nos permitirá explorar, visualizar y obtener información sobre el comportamiento de los clientes de una empresa de productos gourmet y sus respuestas a las campañas de marketing.
+## **Dataset**
 El dataset que usaremos se llama "Marketing Data" y se puede descargar de kaggle en el siguiente enlace: [kagle](https://www.kaggle.com/jackdaoud/marketing-data). El dataset contiene 2240 filas y 28 columnas, cada una de las cuales representa una característica de los clientes o una variable relacionada con el marketing. Las columnas son las siguientes:
 
 |***Característica***|***Descripción***|
@@ -35,7 +35,7 @@ El dataset que usaremos se llama "Marketing Data" y se puede descargar de kaggle
 |NumWebVisitsMonth|número de visitas al sitio web de la empresa en el último mes|
 |Recency|número de días desde la última compra|
 
-# **Google Colab**
+## **Google Colab**
 
 Google Colab es una herramienta online que nos permite ejecutar código de Python en la nube, sin necesidad de instalar nada en nuestro ordenador. Además, podemos acceder a recursos de computación avanzados, como GPUs o TPUs, para procesar grandes cantidades de datos o entrenar modelos de aprendizaje automático. Google Colab también nos permite compartir nuestros notebooks con otros usuarios y colaborar en tiempo real.
 
@@ -187,14 +187,14 @@ print(df.describe())
     - Eliminar la parte de la ruta que corresponde al directorio base desde el que queremos obtener la ruta relativa. Por ejemplo, si el directorio base es "/content", podemos eliminar "/content/" de la ruta copiada.
     - La ruta resultante es la ruta relativa del archivo. Por ejemplo, si la ruta copiada es "/content/drive/MyDrive/datos.csv", la ruta relativa es "drive/MyDrive/datos.csv".
 
-# **Copilotos LLM**
+## **Copilotos LLM**
 Los copilotos LLM son asistentes de escritura inteligentes que nos ayudan a programar en diferentes lenguajes usando el lenguaje natural. En esta clase usaremos el copiloto LLM para Python, que nos permite escribir código en Python usando frases en español. Para usar el copiloto LLM para Python, debemos seguir las siguientes instrucciones:
 
 - Escribir la frase en español que describe lo que queremos hacer con el código, precedida por el símbolo #.
 - Presionar la tecla Tab para que el copiloto LLM genere el código en Python correspondiente a la frase.
 - Revisar el código generado y modificarlo si es necesario.
 - Repetir el proceso hasta completar el análisis de datos.
-# **Análisis de datos**
+## **Análisis de datos**
 Para realizar el análisis de datos de la tabla, seguiremos los siguientes pasos:
 
 1. Importar las librerías necesarias para el análisis de datos.

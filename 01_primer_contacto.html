@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Objetivo &#8212; Inteligencia Artificial para Mercadeo</title>
+    <title>Análisis de datos con pandas &#8212; Inteligencia Artificial para Mercadeo</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -177,11 +177,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Objetivo</strong></a></li>
-
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Análisis de datos con pandas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_primer_cuaderno.html">Exploración dataset ifood</a></li>
 </ul>
 
@@ -368,7 +364,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Objetivo</h1>
+    <h1>Análisis de datos con pandas</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -378,13 +374,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Objetivo</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab"><strong>Google Colab</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#copilotos-llm"><strong>Copilotos LLM</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-datos"><strong>Análisis de datos</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo"><strong>Objetivo</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab"><strong>Google Colab</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copilotos-llm"><strong>Copilotos LLM</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-datos"><strong>Análisis de datos</strong></a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -395,14 +390,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><strong>Clase 3: Análisis de datos con copilotos LLM</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-de-datos-con-pandas">
+<h1>Análisis de datos con pandas<a class="headerlink" href="#analisis-de-datos-con-pandas" title="Link to this heading">#</a></h1>
 <p>Usaremos el dataset de kaggle “Marketing Data”</p>
-<section class="tex2jax_ignore mathjax_ignore" id="objetivo">
-<h1><strong>Objetivo</strong><a class="headerlink" href="#objetivo" title="Link to this heading">#</a></h1>
-<p>En esta clase aprenderemos a usar los copilotos LLM para programar un análisis de datos de una tabla, usando el lenguaje natural y las instrucciones del sistema. El análisis de datos nos permitirá explorar, visualizar y obtener información sobre el comportamiento de los clientes de una empresa de productos gourmet y sus respuestas a las campañas de marketing.</p>
+<section id="objetivo">
+<h2><strong>Objetivo</strong><a class="headerlink" href="#objetivo" title="Link to this heading">#</a></h2>
+<p>En esta clase aprenderemos a programar un análisis de datos de una tabla. El análisis de datos nos permitirá explorar, visualizar y obtener información sobre el comportamiento de los clientes de una empresa de productos gourmet y sus respuestas a las campañas de marketing.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="dataset">
-<h1><strong>Dataset</strong><a class="headerlink" href="#dataset" title="Link to this heading">#</a></h1>
+<section id="dataset">
+<h2><strong>Dataset</strong><a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
 <p>El dataset que usaremos se llama “Marketing Data” y se puede descargar de kaggle en el siguiente enlace: <a class="reference external" href="https://www.kaggle.com/jackdaoud/marketing-data">kagle</a>. El dataset contiene 2240 filas y 28 columnas, cada una de las cuales representa una característica de los clientes o una variable relacionada con el marketing. Las columnas son las siguientes:</p>
 <table class="table">
 <thead>
@@ -489,8 +485,8 @@ document.write(`
 </tbody>
 </table>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="google-colab">
-<h1><strong>Google Colab</strong><a class="headerlink" href="#google-colab" title="Link to this heading">#</a></h1>
+<section id="google-colab">
+<h2><strong>Google Colab</strong><a class="headerlink" href="#google-colab" title="Link to this heading">#</a></h2>
 <p>Google Colab es una herramienta online que nos permite ejecutar código de Python en la nube, sin necesidad de instalar nada en nuestro ordenador. Además, podemos acceder a recursos de computación avanzados, como GPUs o TPUs, para procesar grandes cantidades de datos o entrenar modelos de aprendizaje automático. Google Colab también nos permite compartir nuestros notebooks con otros usuarios y colaborar en tiempo real.</p>
 <p>Para usar Google Colab, solo necesitamos una cuenta de Google y un navegador web. Podemos acceder a la página principal de Google Colab en <a class="reference external" href="https://colab.research.google.com/">https://colab.research.google.com/</a> y seguir estos pasos para crear o abrir un notebook:</p>
 <ul class="simple">
@@ -596,8 +592,8 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="copilotos-llm">
-<h1><strong>Copilotos LLM</strong><a class="headerlink" href="#copilotos-llm" title="Link to this heading">#</a></h1>
+<section id="copilotos-llm">
+<h2><strong>Copilotos LLM</strong><a class="headerlink" href="#copilotos-llm" title="Link to this heading">#</a></h2>
 <p>Los copilotos LLM son asistentes de escritura inteligentes que nos ayudan a programar en diferentes lenguajes usando el lenguaje natural. En esta clase usaremos el copiloto LLM para Python, que nos permite escribir código en Python usando frases en español. Para usar el copiloto LLM para Python, debemos seguir las siguientes instrucciones:</p>
 <ul class="simple">
 <li><p>Escribir la frase en español que describe lo que queremos hacer con el código, precedida por el símbolo #.</p></li>
@@ -606,8 +602,8 @@ document.write(`
 <li><p>Repetir el proceso hasta completar el análisis de datos.</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="analisis-de-datos">
-<h1><strong>Análisis de datos</strong><a class="headerlink" href="#analisis-de-datos" title="Link to this heading">#</a></h1>
+<section id="analisis-de-datos">
+<h2><strong>Análisis de datos</strong><a class="headerlink" href="#analisis-de-datos" title="Link to this heading">#</a></h2>
 <p>Para realizar el análisis de datos de la tabla, seguiremos los siguientes pasos:</p>
 <ol class="arabic simple">
 <li><p>Importar las librerías necesarias para el análisis de datos.</p></li>
@@ -618,6 +614,7 @@ document.write(`
 </ol>
 <p>El cuaderno compartido nos ayudará a realizar la clase:</p>
 <p><a class="reference external" href="https://colab.research.google.com/drive/1KbhZ6HIprtePhDj10mtxpBrStOTetpQK?usp=sharing">https://colab.research.google.com/drive/1KbhZ6HIprtePhDj10mtxpBrStOTetpQK?usp=sharing</a></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -684,13 +681,12 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Objetivo</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab"><strong>Google Colab</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#copilotos-llm"><strong>Copilotos LLM</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-datos"><strong>Análisis de datos</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo"><strong>Objetivo</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab"><strong>Google Colab</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copilotos-llm"><strong>Copilotos LLM</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-datos"><strong>Análisis de datos</strong></a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
