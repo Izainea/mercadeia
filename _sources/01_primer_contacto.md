@@ -5,7 +5,7 @@ Usaremos el dataset de kaggle "Marketing Data"
 
 En esta clase aprenderemos a usar los copilotos LLM para programar un análisis de datos de una tabla, usando el lenguaje natural y las instrucciones del sistema. El análisis de datos nos permitirá explorar, visualizar y obtener información sobre el comportamiento de los clientes de una empresa de productos gourmet y sus respuestas a las campañas de marketing.
 # **Dataset**
-El dataset que usaremos se llama "Marketing Data" y se puede descargar de kaggle en el siguiente enlace: https://www.kaggle.com/jackdaoud/marketing-data. El dataset contiene 2240 filas y 28 columnas, cada una de las cuales representa una característica de los clientes o una variable relacionada con el marketing. Las columnas son las siguientes:
+El dataset que usaremos se llama "Marketing Data" y se puede descargar de kaggle en el siguiente enlace: [kagle](https://www.kaggle.com/jackdaoud/marketing-data). El dataset contiene 2240 filas y 28 columnas, cada una de las cuales representa una característica de los clientes o una variable relacionada con el marketing. Las columnas son las siguientes:
 
 |***Característica***|***Descripción***|
 | - | - |
@@ -104,7 +104,7 @@ Para escribir una lista numerada, usamos un número seguido de un punto al comie
 
 Usamos la etiqueta <img> con el atributo `src` para insertar una imagen, indicando la dirección web donde se encuentra la imagen. También podemos modificar el tamaño de la imagen con los atributos `width` y `height`. Por ejemplo:
 
-<img src='https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo\_clr\_74x24px.svg' width=100 height=100></img>
+![logo](https://izainea.github.io/mercadeia/_static/logo.png)
 
 Las **celdas de código** son espacios donde podemos escribir y ejecutar instrucciones de Python. Estas instrucciones pueden definir variables, funciones, clases, importar librerías, manipular datos, crear gráficos o aplicar algoritmos de aprendizaje automático. Para editar una celda de código, hacemos clic sobre ella y escribimos el código que queremos. Para ejecutarlo, usamos el botón de play o las teclas Ctrl+Enter. El resultado de la ejecución se mostrará debajo de la celda, junto con cualquier mensaje de error o advertencia que se produzca. Podemos usar la opción "Reiniciar entorno de ejecución" del menú "Entorno de ejecución" para borrar todas las variables y reiniciar el notebook.
 
@@ -112,42 +112,80 @@ Python es un lenguaje de programación de alto nivel, que se caracteriza por su 
 
 Para escribir código en Python, debemos seguir algunas reglas básicas, como:
 
-\- Usar indentación para delimitar los bloques de código. La indentación consiste en agregar espacios o tabulaciones al inicio de cada línea de un bloque. Todos los bloques que pertenecen al mismo nivel deben tener la misma indentación.
+- Usar indentación para delimitar los bloques de código. La indentación consiste en agregar espacios o tabulaciones al inicio de cada línea de un bloque. Todos los bloques que pertenecen al mismo nivel deben tener la misma indentación.
 
-\- Usar dos puntos (:) para indicar el inicio de un bloque. Por ejemplo, después de una declaración if, for o def, se debe colocar dos puntos y luego indentar el bloque correspondiente.
+- Usar dos puntos (:) para indicar el inicio de un bloque. Por ejemplo, después de una declaración if, for o def, se debe colocar dos puntos y luego indentar el bloque correspondiente.
 
-\- Usar comillas simples (' ') o dobles (" ") para crear cadenas de texto. Por ejemplo: 'Hola', "Python".
+- Usar comillas simples (' ') o dobles (" ") para crear cadenas de texto. Por ejemplo: 'Hola', "Python".
 
-\- Usar el símbolo # para crear comentarios. Los comentarios son líneas de texto que no se ejecutan y sirven para explicar el código o dejar notas. Por ejemplo: # Esto es un comentario
+- Usar el símbolo # para crear comentarios. Los comentarios son líneas de texto que no se ejecutan y sirven para explicar el código o dejar notas. Por ejemplo: # Esto es un comentario
 
-\- Usar mayúsculas y minúsculas de forma consistente. Python distingue entre mayúsculas y minúsculas, lo que significa que las variables, funciones o clases con nombres diferentes según el uso de mayúsculas y minúsculas son tratadas como entidades distintas. Por ejemplo: nombre, Nombre y NOMBRE son tres variables diferentes.
+- Usar mayúsculas y minúsculas de forma consistente. Python distingue entre mayúsculas y minúsculas, lo que significa que las variables, funciones o clases con nombres diferentes según el uso de mayúsculas y minúsculas son tratadas como entidades distintas. Por ejemplo: nombre, Nombre y NOMBRE son tres variables diferentes.
 
 Estas son algunas de las reglas elementales de programación en Python. Para aprender más sobre este lenguaje, podemos consultar la documentación oficial o algún tutorial en línea. Google Colab nos ofrece un entorno interactivo para practicar y experimentar con Python sin necesidad de instalar nada en nuestro ordenador.
 
 Un ejemplo de cómo usar Google Colab para revisar nuestro dataset es el siguiente:
 
-|<p># Importar pandas, una librería para manipular datos tabulares</p><p></p><p>import pandas as pd</p><p></p><p># Cargar el dataset desde un archivo csv en Google Drive</p><p># Para acceder a Google Drive, debemos montar nuestro drive con el siguiente código</p><p></p><p>from google.colab import drive</p><p>drive.mount('/content/drive')</p><p></p><p># El archivo csv debe estar en una carpeta llamada "datasets" dentro de nuestro drive</p><p># Cambiar el nombre del archivo por el que corresponda</p><p></p><p>dataset = pd.read\_csv('/content/drive/MyDrive/datasets/nombre\_del\_archivo.csv')</p><p></p><p># Mostrar las primeras 5 filas del dataset</p><p>dataset.head()</p><p># Mostrar información básica sobre el dataset, como el número de filas y </p><p>columnas, los nombres de las columnas, los tipos de datos y los valores faltantes</p><p></p><p><a name="_int_nesdvjmy"></a>dataset.info()</p><p></p><p># Mostrar estadísticas descriptivas sobre el dataset, como la media, la mediana, el mínimo, el máximo y la desviación estándar de cada columna numérica</p><p></p><p>dataset.describe()</p>|
-| - |
+```python
+# Importar las librerías necesarias para el análisis de datos
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+```
 
-El anterior código carga el dataset para usarse en Colab, es muy importante que se suba el archivo de forma adecuada. Para subir a Google colab el archivo ifood\_df.csv que se descargó del link de [kaggle](https://www.kaggle.com/datasets/jackdaoud/marketing-data/data), se deben seguir estos pasos:
+El anterior código importa las librerías necesarias para el análisis de datos. La librería pandas nos permite trabajar con tablas de datos, la librería numpy nos permite realizar operaciones matemáticas y la librería matplotlib nos permite crear gráficos. Estas librerías son muy útiles para el análisis de datos y la visualización de resultados.
 
-\- Acceder al panel de archivos en Google Colab haciendo clic en el ícono de carpeta en la barra lateral izquierda.
 
-\- Hacer clic en el ícono de subir archivo en la parte superior derecha del panel y seleccionar el archivo ifood\_df.csv desde la ubicación donde se guardó en el ordenador.
+Para cargar el dataset desde el archivo csv tenemos dos alternaticas, la primera es si el archivo se encuentra en el directorio raíz, en ese caso lo subimos en Google Colab y lo cargamos de la siguiente forma:
 
-\- Esperar a que el archivo se suba y se muestre en el panel de archivos con su nombre y tamaño.
+- Acceder al panel de archivos en Google Colab haciendo clic en el ícono de carpeta en la barra lateral izquierda.
 
-\- Para acceder al archivo desde el código, se puede usar la ruta "/content/ifood\_df.csv" o simplemente el nombre del archivo si se está en el directorio raíz.
+- Hacer clic en el ícono de subir archivo en la parte superior derecha del panel y seleccionar el archivo ifood\_df.csv desde la ubicación donde se guardó en el ordenador.
 
-\- Otra opción para subir archivos a Google Colab es montar el Google Drive con el comando drive.mount('/content/drive') y luego navegar por las carpetas hasta encontrar el archivo deseado.
+- Esperar a que el archivo se suba y se muestre en el panel de archivos con su nombre y tamaño.
 
-\- Para extraer la ruta relativa de un archivo, podemos usar el click derecho sobre el archivo y seguir los siguientes pasos:
+- El siguiente código carga el archivo ifood\_df.csv en un DataFrame de pandas y muestra las primeras filas del DataFrame, la información sobre las columnas y el resumen estadístico de las variables.
 
-- Seleccionar el archivo cuya ruta relativa queremos obtener.
-- Hacer click derecho sobre el archivo y elegir la opción "Copiar ruta".
-- Pegar la ruta copiada en un editor de texto o en la consola de Python.
-- Eliminar la parte de la ruta que corresponde al directorio base desde el que queremos obtener la ruta relativa. Por ejemplo, si el directorio base es "/content", podemos eliminar "/content/" de la ruta copiada.
-- La ruta resultante es la ruta relativa del archivo. Por ejemplo, si la ruta copiada es "/content/drive/MyDrive/datos.csv", la ruta relativa es "drive/MyDrive/datos.csv".
+```python
+
+# Cargar el dataset desde el archivo csv si se encuentra en el directorio raíz
+df = pd.read_csv("ifood_df.csv")
+
+# Explorar el dataset y realizar un análisis exploratorio de datos (EDA)
+print(df.head())
+print(df.info())
+print(df.describe())
+
+```
+
+Otra alternativa es si el archivo se encuentra en Google Drive, en ese caso montamos el Google Drive con el siguiente código:
+
+```python
+# Montar el Google Drive
+from google.colab import drive
+drive.mount('/content/drive')
+```
+
+Luego navegamos por las carpetas hasta encontrar el archivo deseado y lo cargamos de la siguiente forma:
+
+```python
+# Cargar el dataset desde el archivo csv si se encuentra en Google Drive
+df = pd.read_csv("/content/drive/MyDrive/datos.csv")
+
+# Explorar el dataset y realizar un análisis exploratorio de datos (EDA)
+print(df.head())
+print(df.info())
+print(df.describe())
+```
+
+
+ Para extraer la ruta relativa de un archivo, podemos usar el click derecho sobre el archivo y seguir los siguientes pasos:
+
+    - Seleccionar el archivo cuya ruta relativa queremos obtener.
+    - Hacer click derecho sobre el archivo y elegir la opción "Copiar ruta".
+    - Pegar la ruta copiada en un editor de texto o en la consola de Python.
+    - Eliminar la parte de la ruta que corresponde al directorio base desde el que queremos obtener la ruta relativa. Por ejemplo, si el directorio base es "/content", podemos eliminar "/content/" de la ruta copiada.
+    - La ruta resultante es la ruta relativa del archivo. Por ejemplo, si la ruta copiada es "/content/drive/MyDrive/datos.csv", la ruta relativa es "drive/MyDrive/datos.csv".
 
 # **Copilotos LLM**
 Los copilotos LLM son asistentes de escritura inteligentes que nos ayudan a programar en diferentes lenguajes usando el lenguaje natural. En esta clase usaremos el copiloto LLM para Python, que nos permite escribir código en Python usando frases en español. Para usar el copiloto LLM para Python, debemos seguir las siguientes instrucciones:
