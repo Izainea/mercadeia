@@ -6,3 +6,4 @@ root: introduccion
 chapters:
 - file: 01_primer_contacto
 - file: 02_primer_cuaderno
+- file: 03_segundo_cuaderno
