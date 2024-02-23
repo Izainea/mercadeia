@@ -1,0 +1,1029 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Exploración dataset ifood &#8212; Inteligencia Artificial para Mercadeo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04_tercer_cuaderno';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Exploración dataset ifood" href="03_segundo_cuaderno.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="introduccion.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Inteligencia Artificial para Mercadeo - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Inteligencia Artificial para Mercadeo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="introduccion.html">
+                    Repositorio de Mercadeia
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_primer_contacto.html">Análisis de datos con pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_primer_cuaderno.html">Exploración dataset ifood</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_segundo_cuaderno.html">Exploración dataset ifood</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Exploración dataset ifood</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Izainea/mercadeia" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Izainea/mercadeia/issues/new?title=Issue%20on%20page%20%2F04_tercer_cuaderno.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/04_tercer_cuaderno.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exploración dataset ifood</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-datos">Visualización de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-datos-numericos">Gráficos de datos numéricos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-para-dos-variables">Gráficos para dos variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-para-variables-categoricas">Gráficos para variables categóricas</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="exploracion-dataset-ifood">
+<h1>Exploración dataset ifood<a class="headerlink" href="#exploracion-dataset-ifood" title="Link to this heading">#</a></h1>
+<p>Nuevamente cargamos el dataset de ifood para hacer una exploración de los datos. Para este caso, vamos a hacer una exploración de los datos desde las medidas de tendencia central y dispersión. Así mismo, vamos a hacer una exploración de los datos categóricos que aquí se encuentran escritos como variables dummy.</p>
+<section id="carga-de-datos">
+<h2>Carga de datos<a class="headerlink" href="#carga-de-datos" title="Link to this heading">#</a></h2>
+<p>Recordemos que para cargar los datos debe hacer clic en el panel izquierdo en el botón de exploración de archivos. En ese menu tendra la opción de subir algunos datos.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Recuerde que para cargar los datos debe hacer clic en el panel izquierdo en el botón de exploración de archivos. En ese menu tendra la opción de subir algunos datos. En Google Colab, el archivo se borrará una vez que se cierre el entorno.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Load the dataset from the user&#39;s Google Drive</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;ifood_df.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show DataFrame</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Income</th>
+      <th>Kidhome</th>
+      <th>Teenhome</th>
+      <th>Recency</th>
+      <th>MntWines</th>
+      <th>MntFruits</th>
+      <th>MntMeatProducts</th>
+      <th>MntFishProducts</th>
+      <th>MntSweetProducts</th>
+      <th>MntGoldProds</th>
+      <th>...</th>
+      <th>marital_Together</th>
+      <th>marital_Widow</th>
+      <th>education_2n Cycle</th>
+      <th>education_Basic</th>
+      <th>education_Graduation</th>
+      <th>education_Master</th>
+      <th>education_PhD</th>
+      <th>MntTotal</th>
+      <th>MntRegularProds</th>
+      <th>AcceptedCmpOverall</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58138.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>58</td>
+      <td>635</td>
+      <td>88</td>
+      <td>546</td>
+      <td>172</td>
+      <td>88</td>
+      <td>88</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1529</td>
+      <td>1441</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>46344.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>38</td>
+      <td>11</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2</td>
+      <td>1</td>
+      <td>6</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>21</td>
+      <td>15</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>71613.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>26</td>
+      <td>426</td>
+      <td>49</td>
+      <td>127</td>
+      <td>111</td>
+      <td>21</td>
+      <td>42</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>734</td>
+      <td>692</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>26646.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>26</td>
+      <td>11</td>
+      <td>4</td>
+      <td>20</td>
+      <td>10</td>
+      <td>3</td>
+      <td>5</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>48</td>
+      <td>43</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>58293.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>94</td>
+      <td>173</td>
+      <td>43</td>
+      <td>118</td>
+      <td>46</td>
+      <td>27</td>
+      <td>15</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>407</td>
+      <td>392</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 39 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="visualizacion-de-datos">
+<h2>Visualización de datos<a class="headerlink" href="#visualizacion-de-datos" title="Link to this heading">#</a></h2>
+<p>La visualización de datos es una parte fundamental en el análisis de datos. Los gráficos nos permiten comprender y comunicar de manera efectiva la información contenida en los datos.</p>
+<p>En este notebook, utilizaremos las siguientes bibliotecas para crear gráficos:</p>
+<ul class="simple">
+<li><p>Matplotlib: una biblioteca de trazado de gráficos en 2D que produce figuras de calidad de publicación en una variedad de formatos impresos y entornos interactivos en todas las plataformas.</p></li>
+<li><p>Seaborn: una biblioteca de visualización de datos basada en Matplotlib que proporciona una interfaz de alto nivel para dibujar gráficos estadísticos atractivos y informativos.</p></li>
+<li><p>Plotly: una biblioteca de visualización interactiva que permite crear gráficos interactivos y personalizables.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Las librerias son modulos de python que contienen funciones y objetos que pueden ser utilizados para realizar tareas específicas. En este caso, las librerias matplotlib, seaborn y plotly son librerias de visualización de datos. Recuerda que ya hemos cargado pandas y numpy. Cada vez que se inicializa el entorno de ejecución, es necesario volver a cargar las librerias y deben incluirse todas las librerias que se van a utilizar en el notebook.</p>
+</div>
+<section id="graficos-de-datos-numericos">
+<h3>Gráficos de datos numéricos<a class="headerlink" href="#graficos-de-datos-numericos" title="Link to this heading">#</a></h3>
+<p>Vamos a hacer una exploración de los datos numéricos que se encuentran en el dataset. Para ello, vamos a hacer un análisis de las medidas de tendencia central y dispersión. Así mismo, vamos a hacer un análisis de la distribución de los datos.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Recuerda que los datos numéricos son aquellos que se pueden sumar, restar, multiplicar o dividir. En este caso, vamos a hacer un análisis de las variables numéricas que se encuentran en el dataset.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1">## Gráficos para la variable &#39;Recency&#39;</span>
+
+<span class="c1"># Histograma</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Recency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histograma de Recency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/29a16c765f8171b4c1a3da338be5bd647b3978b12b538a9ec9443c37e1101a32.png" src="_images/29a16c765f8171b4c1a3da338be5bd647b3978b12b538a9ec9443c37e1101a32.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>El comando bins es utilizado para definir el número de intervalos en los que se va a dividir el histograma.</p>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realiza un análisis de las variables numéricas que se encuentran en el dataset. ¿Como se interpreta el gráfico si se modifica varias veces el comando <code class="docutils literal notranslate"><span class="pre">bins</span></code>?</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Boxplot</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Recency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10a892b92a680ce1e83ef55773743572f4180b7fa8976d423eb7cc19422d0176.png" src="_images/10a892b92a680ce1e83ef55773743572f4180b7fa8976d423eb7cc19422d0176.png" />
+</div>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>¿Cómo se interpreta el gráfico boxplot? ¿Qué información nos da este gráfico?</p>
+</div>
+</section>
+<section id="graficos-para-dos-variables">
+<h3>Gráficos para dos variables<a class="headerlink" href="#graficos-para-dos-variables" title="Link to this heading">#</a></h3>
+<p>En el caso de las variables que tenemos en el dataset, resultaría interesante ver la relación entre ‘Recency’ y ‘Income’. Para ello, vamos a hacer un gráfico de dispersión.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>El gráfico de dispersión es un gráfico que utiliza coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos. Los datos se muestran como una colección de puntos, cada uno con el valor de una variable que determina la posición en el eje horizontal y el valor de la otra variable que determina la posición en el eje vertical.</p>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realiza un gráfico de dispersión entre las variables ‘Recency’ e ‘Income’. ¿Qué relación observas entre estas dos variables?</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Gráfico de dispersión</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Recency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Income&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gráfico de dispersión de Recency vs Income&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/66a682f8280658e4de1bdc95abaa421d4d3e6e56f022d82c43802ded5ed3b9a8.png" src="_images/66a682f8280658e4de1bdc95abaa421d4d3e6e56f022d82c43802ded5ed3b9a8.png" />
+</div>
+</div>
+</section>
+<section id="graficos-para-variables-categoricas">
+<h3>Gráficos para variables categóricas<a class="headerlink" href="#graficos-para-variables-categoricas" title="Link to this heading">#</a></h3>
+<p>En este dataset no hay variables categoricas, pero vamos a hacer un análisis de las variables dummy que se encuentran en el dataset.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Las variables dummy son variables que toman el valor de 0 o 1 para indicar la presencia o ausencia de una categoría.</p>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>¿Cuáles son las variables dummy que se encuentran en el dataset? Realiza un análisis de estas variables.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Income&#39;, &#39;Kidhome&#39;, &#39;Teenhome&#39;, &#39;Recency&#39;, &#39;MntWines&#39;, &#39;MntFruits&#39;,
+       &#39;MntMeatProducts&#39;, &#39;MntFishProducts&#39;, &#39;MntSweetProducts&#39;,
+       &#39;MntGoldProds&#39;, &#39;NumDealsPurchases&#39;, &#39;NumWebPurchases&#39;,
+       &#39;NumCatalogPurchases&#39;, &#39;NumStorePurchases&#39;, &#39;NumWebVisitsMonth&#39;,
+       &#39;AcceptedCmp3&#39;, &#39;AcceptedCmp4&#39;, &#39;AcceptedCmp5&#39;, &#39;AcceptedCmp1&#39;,
+       &#39;AcceptedCmp2&#39;, &#39;Complain&#39;, &#39;Z_CostContact&#39;, &#39;Z_Revenue&#39;, &#39;Response&#39;,
+       &#39;Age&#39;, &#39;Customer_Days&#39;, &#39;marital_Divorced&#39;, &#39;marital_Married&#39;,
+       &#39;marital_Single&#39;, &#39;marital_Together&#39;, &#39;marital_Widow&#39;,
+       &#39;education_2n Cycle&#39;, &#39;education_Basic&#39;, &#39;education_Graduation&#39;,
+       &#39;education_Master&#39;, &#39;education_PhD&#39;, &#39;MntTotal&#39;, &#39;MntRegularProds&#39;,
+       &#39;AcceptedCmpOverall&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este caso las variables dummy son <code class="docutils literal notranslate"><span class="pre">'marital_Divorced',</span> <span class="pre">'marital_Married','marital_Single',</span> <span class="pre">'marital_Together',</span> <span class="pre">'marital_Widow'</span></code>, el siguiente código permitira convertirla en una sola variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;marital_Divorced&#39;</span><span class="p">,</span> <span class="s1">&#39;marital_Married&#39;</span><span class="p">,</span><span class="s1">&#39;marital_Single&#39;</span><span class="p">,</span> <span class="s1">&#39;marital_Together&#39;</span><span class="p">,</span> <span class="s1">&#39;marital_Widow&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0         marital_Single
+1         marital_Single
+2       marital_Together
+3       marital_Together
+4        marital_Married
+              ...       
+2200     marital_Married
+2201    marital_Together
+2202    marital_Divorced
+2203    marital_Together
+2204     marital_Married
+Name: marital, Length: 2205, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La función idxmax() devuelve el índice de la primera aparición del valor máximo.</p>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>¿Cómo comprobarías que los datos están bien definidos, esto es,  que no se repiten valores en las variables dummy?</p>
+</div>
+<p>Quitamos de la variable df[‘marital’] el prefijo ‘marital_’ y lo guardamos en la variable df[‘marital’].</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;marital_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0         Single
+1         Single
+2       Together
+3       Together
+4        Married
+          ...   
+2200     Married
+2201    Together
+2202    Divorced
+2203    Together
+2204     Married
+Name: marital, Length: 2205, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;marital_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>la función <code class="docutils literal notranslate"><span class="pre">.str</span></code> permite acceder a los métodos de las cadenas de texto y transforma cada elemento de la serie como cadena de texto.</p>
+<p>En este caso <code class="docutils literal notranslate"><span class="pre">.replace</span></code> reemplaza el prefijo ‘marital_’ por un espacio vacío.</p>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realiza transformaciones a las cadenas de texto con las siguientes funciones: <code class="docutils literal notranslate"><span class="pre">.lower()</span></code>, <code class="docutils literal notranslate"><span class="pre">.upper()</span></code>, <code class="docutils literal notranslate"><span class="pre">.capitalize()</span></code>, <code class="docutils literal notranslate"><span class="pre">.title()</span></code>. ¿Qué hace cada una de estas funciones?</p>
+<p><code class="docutils literal notranslate"><span class="pre">df['marital']</span> <span class="pre">=</span> <span class="pre">df['marital'].str.lower()</span></code></p>
+</div>
+<p>Ya que tenemos una variable categórica, vamos a hacer un análisis de la distribución de los datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Tabla de frecuencias</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>marital
+Married     854
+Together    568
+Single      477
+Divorced    230
+Widow        76
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Gráfico de barras</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;marital&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/cd6eab046ffa0bc3b906817cbb71e68fefcd641602a1e3f49022e78714905bec.png" src="_images/cd6eab046ffa0bc3b906817cbb71e68fefcd641602a1e3f49022e78714905bec.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Otra forma de hacerlo</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;marital&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;marital&#39;, ylabel=&#39;count&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/be35609668d5efc8c781b74495437cf0148c0985dd3d2a0eecc5cd1bd4290086.png" src="_images/be35609668d5efc8c781b74495437cf0148c0985dd3d2a0eecc5cd1bd4290086.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Gráfico de pastel</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;pie&#39;</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;lightcoral&#39;</span><span class="p">,</span> <span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightpink&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: ylabel=&#39;count&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/61e40ff787b11204297a53b5630c74dc89e43e496c491b34a315b2b563fd8d67.png" src="_images/61e40ff787b11204297a53b5630c74dc89e43e496c491b34a315b2b563fd8d67.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Otra forma de hacerlo</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span> 
+        <span class="n">labels</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+        <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span> 
+        <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;lightcoral&#39;</span><span class="p">,</span> <span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightpink&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/79a65255b328833814a7db898168b946bf8968eefa0f69bd5ddf03b3cc87c81c.png" src="_images/79a65255b328833814a7db898168b946bf8968eefa0f69bd5ddf03b3cc87c81c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Scatterplot para tres variables</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Recency&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Income&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;marital&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Recency&#39;, ylabel=&#39;Income&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/036be01925ceda22083e364b268dbc88ea25f392193863d6dfbf1e1106eb1947.png" src="_images/036be01925ceda22083e364b268dbc88ea25f392193863d6dfbf1e1106eb1947.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Boxplot </span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;marital&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Recency&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;marital&#39;, ylabel=&#39;Recency&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/ab660357948563c2def921eed959ccbc6746a655d4895c94217bb6a3c4238f8e.png" src="_images/ab660357948563c2def921eed959ccbc6746a655d4895c94217bb6a3c4238f8e.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_segundo_cuaderno.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exploración dataset ifood</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-datos">Visualización de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-datos-numericos">Gráficos de datos numéricos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-para-dos-variables">Gráficos para dos variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-para-variables-categoricas">Gráficos para variables categóricas</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Isaac Zainea
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
