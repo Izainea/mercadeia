@@ -583,6 +583,186 @@ document.write(`
 <p>5 rows × 39 columns</p>
 </div></div></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Load the dataset from the user&#39;s Google Drive</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;ifood_df.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show DataFrame</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Income</th>
+      <th>Kidhome</th>
+      <th>Teenhome</th>
+      <th>Recency</th>
+      <th>MntWines</th>
+      <th>MntFruits</th>
+      <th>MntMeatProducts</th>
+      <th>MntFishProducts</th>
+      <th>MntSweetProducts</th>
+      <th>MntGoldProds</th>
+      <th>...</th>
+      <th>marital_Together</th>
+      <th>marital_Widow</th>
+      <th>education_2n Cycle</th>
+      <th>education_Basic</th>
+      <th>education_Graduation</th>
+      <th>education_Master</th>
+      <th>education_PhD</th>
+      <th>MntTotal</th>
+      <th>MntRegularProds</th>
+      <th>AcceptedCmpOverall</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58138.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>58</td>
+      <td>635</td>
+      <td>88</td>
+      <td>546</td>
+      <td>172</td>
+      <td>88</td>
+      <td>88</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1529</td>
+      <td>1441</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>46344.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>38</td>
+      <td>11</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2</td>
+      <td>1</td>
+      <td>6</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>21</td>
+      <td>15</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>71613.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>26</td>
+      <td>426</td>
+      <td>49</td>
+      <td>127</td>
+      <td>111</td>
+      <td>21</td>
+      <td>42</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>734</td>
+      <td>692</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>26646.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>26</td>
+      <td>11</td>
+      <td>4</td>
+      <td>20</td>
+      <td>10</td>
+      <td>3</td>
+      <td>5</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>48</td>
+      <td>43</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>58293.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>94</td>
+      <td>173</td>
+      <td>43</td>
+      <td>118</td>
+      <td>46</td>
+      <td>27</td>
+      <td>15</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>407</td>
+      <td>392</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 39 columns</p>
+</div></div></div>
+</div>
 </section>
 <section id="visualizacion-de-datos">
 <h2>Visualización de datos<a class="headerlink" href="#visualizacion-de-datos" title="Link to this heading">#</a></h2>
