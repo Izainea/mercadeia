@@ -394,7 +394,303 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="visualizacion-de-datos-con-python">
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Configurar la semilla aleatoria para reproducibilidad</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Número de registros</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10325</span>
+
+<span class="c1"># Definir probabilidades para Marital Status</span>
+<span class="n">marital_status_probabilities</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Single&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span>
+    <span class="s1">&#39;Married&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span>
+    <span class="s1">&#39;Together&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+    <span class="s1">&#39;Widow&#39;</span><span class="p">:</span> <span class="mf">0.05</span>
+<span class="p">}</span>
+
+<span class="c1"># Generar Marital Status</span>
+<span class="n">marital_status</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">marital_status_probabilities</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">marital_status_probabilities</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+<span class="c1"># Inicializar listas para Kidhome y Teenhome</span>
+<span class="n">kidhome</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">teenhome</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Calcular Kidhome y Teenhome basado en Marital Status</span>
+<span class="k">for</span> <span class="n">status</span> <span class="ow">in</span> <span class="n">marital_status</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;Widow&#39;</span> <span class="ow">or</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;Single&#39;</span><span class="p">:</span>
+        <span class="c1"># Viudos con menor probabilidad de tener niños o adolescentes en casa</span>
+        <span class="n">kidhome</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]))</span>
+        <span class="n">teenhome</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Suponiendo que es menos probable que los viudos tengan adolescentes en casa</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Otros estados civiles con diferentes distribuciones</span>
+        <span class="n">kidhome</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]))</span>
+        <span class="n">teenhome</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">]))</span>
+
+<span class="c1"># Generar Education Level y calcular Income basado en Education Level y Marital Status</span>
+<span class="n">education_levels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Basic&#39;</span><span class="p">,</span> <span class="s1">&#39;2n Cycle&#39;</span><span class="p">,</span> <span class="s1">&#39;Graduation&#39;</span><span class="p">,</span> <span class="s1">&#39;Master&#39;</span><span class="p">,</span> <span class="s1">&#39;PhD&#39;</span><span class="p">]</span>
+<span class="n">education_level</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">education_levels</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+
+<span class="c1"># Mapeo de Education Level a Income boost</span>
+<span class="n">education_income_boost</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Basic&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;2n Cycle&#39;</span><span class="p">:</span> <span class="mi">8000</span><span class="p">,</span> <span class="s1">&#39;Graduation&#39;</span><span class="p">:</span> <span class="mi">13000</span><span class="p">,</span> <span class="s1">&#39;Master&#39;</span><span class="p">:</span> <span class="mi">20000</span><span class="p">,</span> <span class="s1">&#39;PhD&#39;</span><span class="p">:</span> <span class="mi">30000</span><span class="p">}</span>
+<span class="n">income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">50000</span> <span class="o">+</span> <span class="n">education_income_boost</span><span class="p">[</span><span class="n">edu</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="mi">15000</span><span class="p">)</span> <span class="k">for</span> <span class="n">edu</span> <span class="ow">in</span> <span class="n">education_level</span><span class="p">])</span>
+
+<span class="c1"># Mapeo de Marital Status a Income adjustment</span>
+<span class="n">marital_income_adjustment</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Single&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Together&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;Married&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span> <span class="s1">&#39;Widow&#39;</span><span class="p">:</span> <span class="mi">15000</span><span class="p">}</span>
+<span class="n">income</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">marital_income_adjustment</span><span class="p">[</span><span class="n">status</span><span class="p">]</span> <span class="k">for</span> <span class="n">status</span> <span class="ow">in</span> <span class="n">marital_status</span><span class="p">])</span>
+
+<span class="c1"># Calcular Recency tomando en cuenta Income, Kidhome, Teenhome y Marital Status</span>
+<span class="n">recency_factors</span> <span class="o">=</span> <span class="n">income</span> <span class="o">/</span> <span class="mi">10000</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">kidhome</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">teenhome</span><span class="p">))</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="n">recency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">50</span> <span class="o">-</span> <span class="n">recency_factors</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">99</span><span class="p">)</span>
+
+<span class="c1"># Crear el DataFrame final</span>
+<span class="n">df_simulated_revised</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Marital_Status&#39;</span><span class="p">:</span> <span class="n">marital_status</span><span class="p">,</span>
+    <span class="s1">&#39;Kidhome&#39;</span><span class="p">:</span> <span class="n">kidhome</span><span class="p">,</span>
+    <span class="s1">&#39;Teenhome&#39;</span><span class="p">:</span> <span class="n">teenhome</span><span class="p">,</span>
+    <span class="s1">&#39;Education_Level&#39;</span><span class="p">:</span> <span class="n">education_level</span><span class="p">,</span>
+    <span class="s1">&#39;Income&#39;</span><span class="p">:</span> <span class="n">income</span><span class="p">,</span>
+    <span class="s1">&#39;Recency&#39;</span><span class="p">:</span> <span class="n">recency</span>
+<span class="p">})</span>
+
+<span class="c1"># Ajustar el cálculo de lam para cada categoría de producto para asegurar que siempre sea positivo</span>
+
+<span class="c1"># Ejemplo ajustado para MntWines, evitando valores negativos para lam</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntWines&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Teenhome&#39;</span><span class="p">])),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Repetir la lógica ajustada para otras categorías, asegurando que lam sea siempre positivo</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntFruits&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">5000</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntMeatProducts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2000</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntFishProducts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">3000</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Teenhome&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntSweetProducts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">4000</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Teenhome&#39;</span><span class="p">])),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntGoldProds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">5000</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Teenhome&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntTotal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntWines&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntFruits&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntMeatProducts&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntFishProducts&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntSweetProducts&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntGoldProds&#39;</span><span class="p">]</span>
+<span class="c1"># Ajustar la lógica para la aceptación de campañas para evitar valores negativos o NaNs</span>
+<span class="n">min_probability</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">max_probability</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;AcceptedCmpOverall&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">30000</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100000</span> <span class="o">+</span> 
+              <span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">200</span> <span class="o">-</span> 
+              <span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Teenhome&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">,</span> 
+              <span class="n">min_probability</span><span class="p">,</span> <span class="n">max_probability</span><span class="p">),</span> 
+    <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># AcceptedCmp1-5: Probabilidad basada en ingresos y recency</span>
+<span class="n">campaign_probs</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100000</span> <span class="o">+</span> <span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">200</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="n">df_simulated_revised</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;AcceptedCmp</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">campaign_probs</span><span class="p">)</span>
+
+<span class="c1"># Age: Simular de manera que tenga sentido con el estado civil</span>
+<span class="c1"># Suponer que los viudos tienden a ser mayores</span>
+<span class="n">age</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">))</span>  <span class="c1"># Base age</span>
+<span class="n">age</span><span class="p">[</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Marital_Status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Widow&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Marital_Status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Widow&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="c1"># Complain: Baja probabilidad general</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Complain&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">))</span>
+
+<span class="c1"># Customer_Days: Días desde que se convirtieron en clientes</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Customer_Days&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">))</span>
+
+<span class="c1"># MntTotal ya calculado, ajustar MntRegularProds</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntRegularProds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntTotal&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntGoldProds&#39;</span><span class="p">]</span>
+
+<span class="c1"># NumCatalogPurchases, NumDealsPurchases, NumStorePurchases, NumWebPurchases: basado en ingresos y edad</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;NumCatalogPurchases&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">20000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">))</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;NumDealsPurchases&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="mi">5</span> <span class="o">-</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">50000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">))</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;NumStorePurchases&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">20</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">))</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;NumWebPurchases&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">25000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">))</span>
+
+<span class="c1"># NumWebVisitsMonth: Influenciado por la edad y el número de hijos</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;NumWebVisitsMonth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="mi">5</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Teenhome&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">))</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="nb">max</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># Response: Última campaña, probabilidad similar a AcceptedCmp1-5</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Response&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">campaign_probs</span><span class="p">)</span>
+
+<span class="c1"># Z_CostContact, Z_Revenue: Valores constantes como indicado</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Z_CostContact&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Z_Revenue&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+
+<span class="c1"># Validación de coherencia para una variable, por ejemplo, MntTotal</span>
+<span class="k">assert</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntTotal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;MntTotal contiene valores negativos.&quot;</span>
+
+<span class="c1"># Mostrar resumen de las nuevas columnas</span>
+<span class="n">df_simulated_revised</span><span class="p">[[</span><span class="s1">&#39;AcceptedCmp1&#39;</span><span class="p">,</span> <span class="s1">&#39;AcceptedCmp2&#39;</span><span class="p">,</span> <span class="s1">&#39;AcceptedCmp3&#39;</span><span class="p">,</span> <span class="s1">&#39;AcceptedCmp4&#39;</span><span class="p">,</span> <span class="s1">&#39;AcceptedCmp5&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Complain&#39;</span><span class="p">,</span> <span class="s1">&#39;Customer_Days&#39;</span><span class="p">,</span> <span class="s1">&#39;MntRegularProds&#39;</span><span class="p">,</span> <span class="s1">&#39;MntTotal&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;NumCatalogPurchases&#39;</span><span class="p">,</span> <span class="s1">&#39;NumDealsPurchases&#39;</span><span class="p">,</span> <span class="s1">&#39;NumStorePurchases&#39;</span><span class="p">,</span> <span class="s1">&#39;NumWebPurchases&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;NumWebVisitsMonth&#39;</span><span class="p">,</span> <span class="s1">&#39;Response&#39;</span><span class="p">,</span> <span class="s1">&#39;Z_CostContact&#39;</span><span class="p">,</span> <span class="s1">&#39;Z_Revenue&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AcceptedCmp1</th>
+      <th>AcceptedCmp2</th>
+      <th>AcceptedCmp3</th>
+      <th>AcceptedCmp4</th>
+      <th>AcceptedCmp5</th>
+      <th>Age</th>
+      <th>Complain</th>
+      <th>Customer_Days</th>
+      <th>MntRegularProds</th>
+      <th>MntTotal</th>
+      <th>NumCatalogPurchases</th>
+      <th>NumDealsPurchases</th>
+      <th>NumStorePurchases</th>
+      <th>NumWebPurchases</th>
+      <th>NumWebVisitsMonth</th>
+      <th>Response</th>
+      <th>Z_CostContact</th>
+      <th>Z_Revenue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>46.0</td>
+      <td>0</td>
+      <td>566</td>
+      <td>293</td>
+      <td>304</td>
+      <td>5</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>39.0</td>
+      <td>0</td>
+      <td>3103</td>
+      <td>369</td>
+      <td>394</td>
+      <td>1</td>
+      <td>7</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>36.0</td>
+      <td>0</td>
+      <td>565</td>
+      <td>192</td>
+      <td>194</td>
+      <td>3</td>
+      <td>6</td>
+      <td>0</td>
+      <td>5</td>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>1582</td>
+      <td>171</td>
+      <td>171</td>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>4</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>45.0</td>
+      <td>0</td>
+      <td>2250</td>
+      <td>268</td>
+      <td>294</td>
+      <td>1</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>4</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_simulated_revised</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;ifood_simulado.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="visualizacion-de-datos-con-python">
 <h1>Visualización de datos con Python<a class="headerlink" href="#visualizacion-de-datos-con-python" title="Link to this heading">#</a></h1>
 <p>Nuevamente cargamos el dataset de ifood para hacer una exploración de los datos. Para este caso, vamos a hacer una exploración de los datos desde las medidas de tendencia central y dispersión. Así mismo, vamos a hacer una exploración de los datos categóricos que aquí se encuentran escritos como variables dummy.</p>
 <section id="carga-de-datos">
@@ -445,9 +741,17 @@ document.write(`
       <th>MntFruits</th>
       <th>MntMeatProducts</th>
       <th>MntFishProducts</th>
-      <th>MntSweetProducts</th>
-      <th>MntGoldProds</th>
-      <th>AcceptedCmpOverall</th>
+      <th>...</th>
+      <th>Customer_Days</th>
+      <th>MntRegularProds</th>
+      <th>NumCatalogPurchases</th>
+      <th>NumDealsPurchases</th>
+      <th>NumStorePurchases</th>
+      <th>NumWebPurchases</th>
+      <th>NumWebVisitsMonth</th>
+      <th>Response</th>
+      <th>Z_CostContact</th>
+      <th>Z_Revenue</th>
     </tr>
   </thead>
   <tbody>
@@ -463,9 +767,17 @@ document.write(`
       <td>17</td>
       <td>82</td>
       <td>18</td>
-      <td>20</td>
-      <td>11</td>
+      <td>...</td>
+      <td>566</td>
+      <td>293</td>
+      <td>5</td>
+      <td>2</td>
+      <td>3</td>
       <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>3</td>
+      <td>11</td>
     </tr>
     <tr>
       <th>1</th>
@@ -479,9 +791,17 @@ document.write(`
       <td>17</td>
       <td>101</td>
       <td>28</td>
-      <td>31</td>
-      <td>25</td>
+      <td>...</td>
+      <td>3103</td>
+      <td>369</td>
       <td>1</td>
+      <td>7</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
     </tr>
     <tr>
       <th>2</th>
@@ -495,9 +815,17 @@ document.write(`
       <td>7</td>
       <td>57</td>
       <td>46</td>
-      <td>32</td>
-      <td>2</td>
+      <td>...</td>
+      <td>565</td>
+      <td>192</td>
+      <td>3</td>
+      <td>6</td>
       <td>0</td>
+      <td>5</td>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
     </tr>
     <tr>
       <th>3</th>
@@ -511,9 +839,17 @@ document.write(`
       <td>39</td>
       <td>0</td>
       <td>62</td>
-      <td>70</td>
-      <td>0</td>
+      <td>...</td>
+      <td>1582</td>
+      <td>171</td>
+      <td>4</td>
       <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>4</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
     </tr>
     <tr>
       <th>4</th>
@@ -527,12 +863,21 @@ document.write(`
       <td>15</td>
       <td>69</td>
       <td>20</td>
-      <td>12</td>
-      <td>26</td>
+      <td>...</td>
+      <td>2250</td>
+      <td>268</td>
+      <td>1</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>4</td>
       <td>0</td>
+      <td>3</td>
+      <td>11</td>
     </tr>
   </tbody>
 </table>
+<p>5 rows × 31 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -652,8 +997,12 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Marital_Status&#39;, &#39;Kidhome&#39;, &#39;Teenhome&#39;, &#39;Education_Level&#39;, &#39;Income&#39;,
        &#39;Recency&#39;, &#39;MntWines&#39;, &#39;MntFruits&#39;, &#39;MntMeatProducts&#39;,
-       &#39;MntFishProducts&#39;, &#39;MntSweetProducts&#39;, &#39;MntGoldProds&#39;,
-       &#39;AcceptedCmpOverall&#39;],
+       &#39;MntFishProducts&#39;, &#39;MntSweetProducts&#39;, &#39;MntGoldProds&#39;, &#39;MntTotal&#39;,
+       &#39;AcceptedCmpOverall&#39;, &#39;AcceptedCmp1&#39;, &#39;AcceptedCmp2&#39;, &#39;AcceptedCmp3&#39;,
+       &#39;AcceptedCmp4&#39;, &#39;AcceptedCmp5&#39;, &#39;Age&#39;, &#39;Complain&#39;, &#39;Customer_Days&#39;,
+       &#39;MntRegularProds&#39;, &#39;NumCatalogPurchases&#39;, &#39;NumDealsPurchases&#39;,
+       &#39;NumStorePurchases&#39;, &#39;NumWebPurchases&#39;, &#39;NumWebVisitsMonth&#39;, &#39;Response&#39;,
+       &#39;Z_CostContact&#39;, &#39;Z_Revenue&#39;],
       dtype=&#39;object&#39;)
 </pre></div>
 </div>
@@ -809,118 +1158,15 @@ Name: count, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Boxplot </span>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Marital_Status&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Income&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Marital_Status&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Marital_Status&#39;, ylabel=&#39;Income&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Marital_Status&#39;, ylabel=&#39;Age&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/a93e7e37dead396f65a6d510ca09acedb932d6293575b025770c9efced8fc4d7.png" src="_images/a93e7e37dead396f65a6d510ca09acedb932d6293575b025770c9efced8fc4d7.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="c1"># Configurar la semilla aleatoria para reproducibilidad</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-
-<span class="c1"># Número de registros</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">10325</span>
-
-<span class="c1"># Definir probabilidades para Marital Status</span>
-<span class="n">marital_status_probabilities</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Single&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span>
-    <span class="s1">&#39;Married&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span>
-    <span class="s1">&#39;Together&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
-    <span class="s1">&#39;Widow&#39;</span><span class="p">:</span> <span class="mf">0.05</span>
-<span class="p">}</span>
-
-<span class="c1"># Generar Marital Status</span>
-<span class="n">marital_status</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">marital_status_probabilities</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">marital_status_probabilities</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
-
-<span class="c1"># Inicializar listas para Kidhome y Teenhome</span>
-<span class="n">kidhome</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">teenhome</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="c1"># Calcular Kidhome y Teenhome basado en Marital Status</span>
-<span class="k">for</span> <span class="n">status</span> <span class="ow">in</span> <span class="n">marital_status</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;Widow&#39;</span> <span class="ow">or</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;Single&#39;</span><span class="p">:</span>
-        <span class="c1"># Viudos con menor probabilidad de tener niños o adolescentes en casa</span>
-        <span class="n">kidhome</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]))</span>
-        <span class="n">teenhome</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Suponiendo que es menos probable que los viudos tengan adolescentes en casa</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Otros estados civiles con diferentes distribuciones</span>
-        <span class="n">kidhome</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]))</span>
-        <span class="n">teenhome</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">]))</span>
-
-<span class="c1"># Generar Education Level y calcular Income basado en Education Level y Marital Status</span>
-<span class="n">education_levels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Basic&#39;</span><span class="p">,</span> <span class="s1">&#39;2n Cycle&#39;</span><span class="p">,</span> <span class="s1">&#39;Graduation&#39;</span><span class="p">,</span> <span class="s1">&#39;Master&#39;</span><span class="p">,</span> <span class="s1">&#39;PhD&#39;</span><span class="p">]</span>
-<span class="n">education_level</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">education_levels</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
-
-<span class="c1"># Mapeo de Education Level a Income boost</span>
-<span class="n">education_income_boost</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Basic&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;2n Cycle&#39;</span><span class="p">:</span> <span class="mi">8000</span><span class="p">,</span> <span class="s1">&#39;Graduation&#39;</span><span class="p">:</span> <span class="mi">13000</span><span class="p">,</span> <span class="s1">&#39;Master&#39;</span><span class="p">:</span> <span class="mi">20000</span><span class="p">,</span> <span class="s1">&#39;PhD&#39;</span><span class="p">:</span> <span class="mi">30000</span><span class="p">}</span>
-<span class="n">income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">50000</span> <span class="o">+</span> <span class="n">education_income_boost</span><span class="p">[</span><span class="n">edu</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="mi">15000</span><span class="p">)</span> <span class="k">for</span> <span class="n">edu</span> <span class="ow">in</span> <span class="n">education_level</span><span class="p">])</span>
-
-<span class="c1"># Mapeo de Marital Status a Income adjustment</span>
-<span class="n">marital_income_adjustment</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Single&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Together&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;Married&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span> <span class="s1">&#39;Widow&#39;</span><span class="p">:</span> <span class="mi">15000</span><span class="p">}</span>
-<span class="n">income</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">marital_income_adjustment</span><span class="p">[</span><span class="n">status</span><span class="p">]</span> <span class="k">for</span> <span class="n">status</span> <span class="ow">in</span> <span class="n">marital_status</span><span class="p">])</span>
-
-<span class="c1"># Calcular Recency tomando en cuenta Income, Kidhome, Teenhome y Marital Status</span>
-<span class="n">recency_factors</span> <span class="o">=</span> <span class="n">income</span> <span class="o">/</span> <span class="mi">10000</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">kidhome</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">teenhome</span><span class="p">))</span> <span class="o">*</span> <span class="mi">5</span>
-<span class="n">recency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">50</span> <span class="o">-</span> <span class="n">recency_factors</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">99</span><span class="p">)</span>
-
-<span class="c1"># Crear el DataFrame final</span>
-<span class="n">df_simulated_revised</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;Marital_Status&#39;</span><span class="p">:</span> <span class="n">marital_status</span><span class="p">,</span>
-    <span class="s1">&#39;Kidhome&#39;</span><span class="p">:</span> <span class="n">kidhome</span><span class="p">,</span>
-    <span class="s1">&#39;Teenhome&#39;</span><span class="p">:</span> <span class="n">teenhome</span><span class="p">,</span>
-    <span class="s1">&#39;Education_Level&#39;</span><span class="p">:</span> <span class="n">education_level</span><span class="p">,</span>
-    <span class="s1">&#39;Income&#39;</span><span class="p">:</span> <span class="n">income</span><span class="p">,</span>
-    <span class="s1">&#39;Recency&#39;</span><span class="p">:</span> <span class="n">recency</span>
-<span class="p">})</span>
-
-<span class="c1"># Ajustar el cálculo de lam para cada categoría de producto para asegurar que siempre sea positivo</span>
-
-<span class="c1"># Ejemplo ajustado para MntWines, evitando valores negativos para lam</span>
-<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntWines&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Teenhome&#39;</span><span class="p">])),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-
-<span class="c1"># Repetir la lógica ajustada para otras categorías, asegurando que lam sea siempre positivo</span>
-<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntFruits&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">5000</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntMeatProducts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2000</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntFishProducts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">3000</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Teenhome&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntSweetProducts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">4000</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Teenhome&#39;</span><span class="p">])),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;MntGoldProds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">5000</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Teenhome&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-
-<span class="c1"># Ajustar la lógica para la aceptación de campañas para evitar valores negativos o NaNs</span>
-<span class="n">min_probability</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="n">max_probability</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;AcceptedCmpOverall&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">((</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">30000</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100000</span> <span class="o">+</span> 
-              <span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">200</span> <span class="o">-</span> 
-              <span class="p">(</span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Teenhome&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">,</span> 
-              <span class="n">min_probability</span><span class="p">,</span> <span class="n">max_probability</span><span class="p">),</span> 
-    <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_simulated_revised</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_simulated_revised</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;ifood_simulado.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
+<img alt="_images/6d75940814999408077f5a9543e93ce2b21ebbb7d7a4b2615d7a8cdbd6553dc9.png" src="_images/6d75940814999408077f5a9543e93ce2b21ebbb7d7a4b2615d7a8cdbd6553dc9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -978,6 +1224,232 @@ dtype: int64
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Dataset total</span>
+
+<span class="n">DF</span><span class="o">=</span><span class="n">X</span>
+<span class="n">DF</span><span class="p">[</span><span class="s1">&#39;HasTermDeposit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DF</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;bank_marketing.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bank_marketing</span><span class="o">.</span><span class="n">variables</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>role</th>
+      <th>type</th>
+      <th>demographic</th>
+      <th>description</th>
+      <th>units</th>
+      <th>missing_values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>age</td>
+      <td>Feature</td>
+      <td>Integer</td>
+      <td>Age</td>
+      <td>None</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>job</td>
+      <td>Feature</td>
+      <td>Categorical</td>
+      <td>Occupation</td>
+      <td>type of job (categorical: 'admin.','blue-colla...</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>marital</td>
+      <td>Feature</td>
+      <td>Categorical</td>
+      <td>Marital Status</td>
+      <td>marital status (categorical: 'divorced','marri...</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>education</td>
+      <td>Feature</td>
+      <td>Categorical</td>
+      <td>Education Level</td>
+      <td>(categorical: 'basic.4y','basic.6y','basic.9y'...</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>default</td>
+      <td>Feature</td>
+      <td>Binary</td>
+      <td>None</td>
+      <td>has credit in default?</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>balance</td>
+      <td>Feature</td>
+      <td>Integer</td>
+      <td>None</td>
+      <td>average yearly balance</td>
+      <td>euros</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>housing</td>
+      <td>Feature</td>
+      <td>Binary</td>
+      <td>None</td>
+      <td>has housing loan?</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>loan</td>
+      <td>Feature</td>
+      <td>Binary</td>
+      <td>None</td>
+      <td>has personal loan?</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>contact</td>
+      <td>Feature</td>
+      <td>Categorical</td>
+      <td>None</td>
+      <td>contact communication type (categorical: 'cell...</td>
+      <td>None</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>day_of_week</td>
+      <td>Feature</td>
+      <td>Date</td>
+      <td>None</td>
+      <td>last contact day of the week</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>month</td>
+      <td>Feature</td>
+      <td>Date</td>
+      <td>None</td>
+      <td>last contact month of year (categorical: 'jan'...</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>duration</td>
+      <td>Feature</td>
+      <td>Integer</td>
+      <td>None</td>
+      <td>last contact duration, in seconds (numeric). ...</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>campaign</td>
+      <td>Feature</td>
+      <td>Integer</td>
+      <td>None</td>
+      <td>number of contacts performed during this campa...</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>pdays</td>
+      <td>Feature</td>
+      <td>Integer</td>
+      <td>None</td>
+      <td>number of days that passed by after the client...</td>
+      <td>None</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>previous</td>
+      <td>Feature</td>
+      <td>Integer</td>
+      <td>None</td>
+      <td>number of contacts performed before this campa...</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>poutcome</td>
+      <td>Feature</td>
+      <td>Categorical</td>
+      <td>None</td>
+      <td>outcome of the previous marketing campaign (ca...</td>
+      <td>None</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>y</td>
+      <td>Target</td>
+      <td>Binary</td>
+      <td>None</td>
+      <td>has the client subscribed a term deposit?</td>
+      <td>None</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
