@@ -184,6 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="05_cuarto_cuaderno.html">Manipulación, Limpieza y Exploración de Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_Aprendizaje_Autom%C3%A1tico.html">Introducción al Aprendizaje Automático en Mercadeo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_arboles_de_decision.html">Árboles de Decisión para Marketing Bancario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_estadisticos_de_validacion.html">Estadísticos de Validación de un Modelo de Clasificación Supervisada</a></li>
 </ul>
 
     </div>
@@ -922,7 +923,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a5011576f224c2375d83803c9bd175ac45ba4c29c5cbb71b821faeb93d832f90.png" src="_images/a5011576f224c2375d83803c9bd175ac45ba4c29c5cbb71b821faeb93d832f90.png" />
+<img alt="_images/60f51996071aa35792c68beb991eac58bd089bf138bc147df3f5baf9a8c5d381.png" src="_images/60f51996071aa35792c68beb991eac58bd089bf138bc147df3f5baf9a8c5d381.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -944,7 +945,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/072eb1f203222757897d32e52ce2d4b7efa03e3a332cdf309bdd2f9d49369ec8.png" src="_images/072eb1f203222757897d32e52ce2d4b7efa03e3a332cdf309bdd2f9d49369ec8.png" />
+<img alt="_images/9c98e5b609bd954f3c13c7cddc90f300149fc4bf1c2c5dec736a2ac1458fb858.png" src="_images/9c98e5b609bd954f3c13c7cddc90f300149fc4bf1c2c5dec736a2ac1458fb858.png" />
 </div>
 </div>
 <div class="admonition-ejercicio admonition">
@@ -976,7 +977,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a1c6ca08562752df0a52c69ff645c7e21b52a929041815486169ab0c0602d30a.png" src="_images/a1c6ca08562752df0a52c69ff645c7e21b52a929041815486169ab0c0602d30a.png" />
+<img alt="_images/b973967edd83447290746b99bd8a74a39966385260f6c39643ad655a2d484741.png" src="_images/b973967edd83447290746b99bd8a74a39966385260f6c39643ad655a2d484741.png" />
 </div>
 </div>
 </section>
@@ -1093,7 +1094,7 @@ Name: count, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Marital_Status&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/1a8501500cfd6201be4bff1605419be987e9d70617cb450ce4a181c5487c8c8e.png" src="_images/1a8501500cfd6201be4bff1605419be987e9d70617cb450ce4a181c5487c8c8e.png" />
+<img alt="_images/180e26695ea3f91a5ad233da30251c9e04f6f98a4d7bb9a73c3d306edd3fd35a.png" src="_images/180e26695ea3f91a5ad233da30251c9e04f6f98a4d7bb9a73c3d306edd3fd35a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1105,10 +1106,17 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\cizai\AppData\Local\Temp\ipykernel_3144\530408223.py:3: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.countplot(x=&#39;Marital_Status&#39;, data=df, palette=&#39;Blues&#39;)
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Marital_Status&#39;, ylabel=&#39;count&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/f2eb9476a1052ba5e5f9b5914b206a54938d2f0467594a5e2fca0cb5fce48ad6.png" src="_images/f2eb9476a1052ba5e5f9b5914b206a54938d2f0467594a5e2fca0cb5fce48ad6.png" />
+<img alt="_images/e3b1b2e97ea059151f0591a9d22c3fc88200e88402d139535b3cba61af53c679.png" src="_images/e3b1b2e97ea059151f0591a9d22c3fc88200e88402d139535b3cba61af53c679.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1123,7 +1131,7 @@ Name: count, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: ylabel=&#39;count&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/85418138d7dcf3bcd9a20a30f787bac07530feab507116bf3f8bf01638fdb680.png" src="_images/85418138d7dcf3bcd9a20a30f787bac07530feab507116bf3f8bf01638fdb680.png" />
+<img alt="_images/cea850c699132bd8ce38b0e9cce872c670c2392febbe272e1e1fd17445e77b03.png" src="_images/cea850c699132bd8ce38b0e9cce872c670c2392febbe272e1e1fd17445e77b03.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1139,7 +1147,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/532aa9aa302cbe4492395c06b04bc4a1d352c2669c6c80daabaaa8904d259fee.png" src="_images/532aa9aa302cbe4492395c06b04bc4a1d352c2669c6c80daabaaa8904d259fee.png" />
+<img alt="_images/fd55edc69c3c9b8c60d173a895de77fbea692a1653fb55fa2ba7e68016e39e54.png" src="_images/fd55edc69c3c9b8c60d173a895de77fbea692a1653fb55fa2ba7e68016e39e54.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1154,7 +1162,7 @@ Name: count, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Teenhome&#39;, ylabel=&#39;Income&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/96449d9cb769ce1d29a10929b2367243441c230611b6c9b4bf9c5f881eb39284.png" src="_images/96449d9cb769ce1d29a10929b2367243441c230611b6c9b4bf9c5f881eb39284.png" />
+<img alt="_images/e6a35c4bde8222193da154461dce56ae4c595415eee1082032d2ed256c10057f.png" src="_images/e6a35c4bde8222193da154461dce56ae4c595415eee1082032d2ed256c10057f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1166,10 +1174,17 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\cizai\AppData\Local\Temp\ipykernel_3144\1106627374.py:3: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(x=&#39;Marital_Status&#39;, y=&#39;Age&#39;, data=df, palette=&#39;viridis&#39;)
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Marital_Status&#39;, ylabel=&#39;Age&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/6d75940814999408077f5a9543e93ce2b21ebbb7d7a4b2615d7a8cdbd6553dc9.png" src="_images/6d75940814999408077f5a9543e93ce2b21ebbb7d7a4b2615d7a8cdbd6553dc9.png" />
+<img alt="_images/864bd27024b5368819a56c28f1ccff5f8faf07043dbafaa5bc20eb01fd84b1c7.png" src="_images/864bd27024b5368819a56c28f1ccff5f8faf07043dbafaa5bc20eb01fd84b1c7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1179,7 +1194,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: ucimlrepo in /home/izainea/miniconda3/lib/python3.11/site-packages (0.0.3)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: ucimlrepo in c:\users\cizai\miniconda3\lib\site-packages (0.0.3)
 </pre></div>
 </div>
 </div>
