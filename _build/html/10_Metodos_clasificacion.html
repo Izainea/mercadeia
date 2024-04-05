@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -385,9 +385,29 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principios-fundamentales-de-svm">Principios Fundamentales de SVM</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-algoritmo-svm">Visualización del Algoritmo SVM</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-importantes-de-svm">Hipérparámetros Importantes de SVM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes">Naive Bayes</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funciona-naive-bayes">Cómo Funciona Naive Bayes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamentos-detallados-de-naive-bayes">Fundamentos Detallados de Naive Bayes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-extendidas-de-naive-bayes">Aplicaciones Extendidas de Naive Bayes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-intuitivo-y-visual">Ejemplo Intuitivo y Visual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-de-naive-bayes">Hiperparámetros de Naive Bayes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funciona-gradient-boosting">Cómo Funciona Gradient Boosting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principios-fundamentales-de-gradient-boosting">Principios Fundamentales de Gradient Boosting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-algoritmo-gradient-boosting">Visualización del Algoritmo Gradient Boosting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-y-ventajas-de-gradient-boosting">Aplicaciones y Ventajas de Gradient Boosting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-importantes-de-gradient-boosting">Hiperparámetros Importantes de Gradient Boosting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funcionan-las-redes-neuronales-artificiales">Cómo Funcionan las Redes Neuronales Artificiales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principios-fundamentales-de-las-redes-neuronales">Principios Fundamentales de las Redes Neuronales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-de-redes-neuronales">Entrenamiento de Redes Neuronales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-y-ventajas-de-las-redes-neuronales">Aplicaciones y Ventajas de las Redes Neuronales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">Conclusiones</a></li>
 </ul>
             </nav>
         </div>
@@ -653,156 +673,51 @@ weighted avg       1.00      1.00      1.00        60
 <li><p><strong>gamma:</strong> Coeficiente del kernel para los kernels <code class="docutils literal notranslate"><span class="pre">rbf</span></code>, <code class="docutils literal notranslate"><span class="pre">poly</span></code>, y <code class="docutils literal notranslate"><span class="pre">sigmoid</span></code>. Un valor más alto de <code class="docutils literal notranslate"><span class="pre">gamma</span></code> dará como resultado un ajuste más preciso a los datos de entrenamiento, pero puede llevar a un sobreajuste.</p></li>
 </ul>
 </section>
-<section id="naive-bayes">
-<h3>Naive Bayes<a class="headerlink" href="#naive-bayes" title="Link to this heading">#</a></h3>
-<p><strong>Naive Bayes</strong> es un conjunto de algoritmos de clasificación supervisada basados en el teorema de Bayes con la “naive” suposición de independencia entre las características. A pesar de su simplicidad, Naive Bayes puede superar a modelos de clasificación más complejos.</p>
+</section>
+<section id="como-funciona-naive-bayes">
+<h2>Cómo Funciona Naive Bayes<a class="headerlink" href="#como-funciona-naive-bayes" title="Link to this heading">#</a></h2>
+<p>Naive Bayes es un clasificador probabilístico que se basa en el teorema de Bayes, junto con una suposición simplificadora pero poderosa: la independencia condicional entre cada par de características dada la variable de clase. Este clasificador es ampliamente utilizado en tareas de clasificación debido a su simplicidad, eficiencia y efectividad, especialmente en el procesamiento de texto y filtrado de spam.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>El corazón de Naive Bayes es el teorema de Bayes, que permite calcular la probabilidad posterior de una clase, dadas ciertas características observadas, utilizando la probabilidad previa de la clase y las probabilidades de esas características dada la clase.</p>
+</div>
+<section id="fundamentos-detallados-de-naive-bayes">
+<h3>Fundamentos Detallados de Naive Bayes<a class="headerlink" href="#fundamentos-detallados-de-naive-bayes" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Teorema de Bayes:</strong> Este teorema es esencial para entender cómo Naive Bayes actualiza las probabilidades de las hipótesis a medida que se dispone de nueva evidencia. Matemáticamente, el teorema se expresa como (P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}), donde (P(A|B)) es la probabilidad de (A) dado (B).</p></li>
+<li><p><strong>Independencia de las Características:</strong> A pesar de que en la realidad las características pueden estar relacionadas, Naive Bayes simplifica los cálculos asumiendo que son independientes entre sí dada la clase. Esta suposición naive permite que el modelo se entrene y ejecute eficientemente incluso en conjuntos de datos de alta dimensión.</p></li>
+<li><p><strong>Cálculo de Probabilidades:</strong> Naive Bayes calcula la probabilidad de cada clase dadas las características observadas y selecciona la clase con la mayor probabilidad como la predicción. Este proceso implica multiplicar las probabilidades de las características observadas, ajustadas por las probabilidades previas de las clases.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Aunque la suposición de independencia puede parecer una gran simplificación, Naive Bayes funciona sorprendentemente bien en muchos escenarios reales. Esto se debe a que, para la tarea de clasificación, lo que importa es la probabilidad relativa de las clases, no el valor exacto de las probabilidades.</p>
+</div>
+</section>
+<section id="aplicaciones-extendidas-de-naive-bayes">
+<h3>Aplicaciones Extendidas de Naive Bayes<a class="headerlink" href="#aplicaciones-extendidas-de-naive-bayes" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Ventajas</strong>: Simple, rápido y efectivo en conjuntos de datos de gran dimensión.</p></li>
-<li><p><strong>Desventajas</strong>: La suposición de independencia entre características no siempre se cumple en datos reales.</p></li>
+<li><p><strong>Clasificación de Textos y Filtrado de Spam:</strong> Distinguir entre correos electrónicos legítimos y no deseados basándose en la presencia de ciertas palabras clave.</p></li>
+<li><p><strong>Diagnóstico Médico:</strong> Predecir la presencia de enfermedades a partir de síntomas y resultados de pruebas, tratando cada síntoma o resultado de prueba como una característica independiente.</p></li>
+<li><p><strong>Detección de Sentimientos en Textos:</strong> Determinar si una opinión expresada en texto es positiva, negativa o neutral, analizando las palabras y frases utilizadas.</p></li>
 </ul>
-<p><strong>Ejemplo práctico</strong>: Clasificación de especies de Iris basada en medidas de sus características.</p>
-<p><strong>Más información</strong>: <a class="reference external" href="https://scikit-learn.org/stable/modules/naive_bayes.html">Scikit-learn Naive Bayes</a></p>
+</section>
+<section id="ejemplo-intuitivo-y-visual">
+<h3>Ejemplo Intuitivo y Visual<a class="headerlink" href="#ejemplo-intuitivo-y-visual" title="Link to this heading">#</a></h3>
+<p>Considera el problema de clasificar animales en “gatos” y “perros” basado en características como “tamaño” y “sonido”. Naive Bayes miraría cada característica individualmente, calculando cómo afecta la probabilidad de que el animal sea un gato o un perro, sin preocuparse por las correlaciones entre “tamaño” y “sonido”. Si históricamente los animales pequeños que maúllan son más a menudo gatos, Naive Bayes inclinará fuertemente su predicción hacia “gato” cuando se encuentre con un animal pequeño que maúlla, independientemente de otras correlaciones.</p>
+<p>Naive Bayes demuestra que incluso bajo suposiciones simplificadoras, se pueden desarrollar modelos poderosos y eficientes para clasificación. Su rendimiento, especialmente en tareas de clasificación de texto y situaciones con conjuntos de datos de alta dimensión, subraya la importancia de las técnicas probabilísticas en el aprendizaje automático y la ciencia de datos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Ejemplo sencillo </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo de Implementación con Naive Bayes en scikit-learn</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
 
-<span class="c1">## Dataset de prueba [Iris]</span>
+<span class="c1"># Crear y entrenar el modelo Naive Bayes</span>
+<span class="n">gnb</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">gnb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># Realizar predicciones y evaluar el modelo</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">gnb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
-<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
-<span class="n">iris_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)],</span>
-                        <span class="n">columns</span><span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">])</span>
-
-<span class="n">iris_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>sepal length (cm)</th>
-      <th>sepal width (cm)</th>
-      <th>petal length (cm)</th>
-      <th>petal width (cm)</th>
-      <th>target</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5.1</td>
-      <td>3.5</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>4.9</td>
-      <td>3.0</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>4.7</td>
-      <td>3.2</td>
-      <td>1.3</td>
-      <td>0.2</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4.6</td>
-      <td>3.1</td>
-      <td>1.5</td>
-      <td>0.2</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5.0</td>
-      <td>3.6</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>target
-0    50
-1    50
-2    50
-Name: count, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Dividir el dataset en entrenamiento y prueba</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">iris_df</span><span class="p">[</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">]],</span> <span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X train shape:&#39;</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X test shape:&#39;</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X train shape: (90, 4)
-X test shape: (60, 4)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Ahora clasificación con Random Forest</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-
-<span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="c1">## Predicción</span>
-
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-
-<span class="c1">## Evaluación</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="c1"># Evaluación</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
 </pre></div>
@@ -812,51 +727,171 @@ X test shape: (60, 4)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
          0.0       1.00      1.00      1.00        20
-         1.0       0.90      0.95      0.93        20
-         2.0       0.95      0.90      0.92        20
+         1.0       0.95      0.95      0.95        20
+         2.0       0.95      0.95      0.95        20
 
-    accuracy                           0.95        60
-   macro avg       0.95      0.95      0.95        60
-weighted avg       0.95      0.95      0.95        60
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo de Implementación con Naive Bayes en scikit-learn</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
-
-<span class="c1"># Cargar el conjunto de datos Iris</span>
-<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
-
-<span class="c1"># Dividir el conjunto de datos en entrenamiento y prueba</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-
-<span class="c1"># Crear y entrenar el modelo Naive Bayes</span>
-<span class="n">gnb</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
-<span class="n">gnb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="c1"># Realizar predicciones y evaluar el modelo</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">gnb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.9777777777777777
+    accuracy                           0.97        60
+   macro avg       0.97      0.97      0.97        60
+weighted avg       0.97      0.97      0.97        60
 </pre></div>
 </div>
 </div>
 </div>
 </section>
+<section id="hiperparametros-de-naive-bayes">
+<h3>Hiperparámetros de Naive Bayes<a class="headerlink" href="#hiperparametros-de-naive-bayes" title="Link to this heading">#</a></h3>
+<p>Aunque Naive Bayes es un modelo relativamente simple, tiene algunos hiperparámetros que pueden ajustarse para mejorar su rendimiento. Algunos de los hiperparámetros más comunes son:</p>
+<ul class="simple">
+<li><p><strong>alpha:</strong> Parámetro de suavizado de Laplace, que evita la probabilidad cero para características no observadas en el conjunto de entrenamiento. Un valor más alto de <code class="docutils literal notranslate"><span class="pre">alpha</span></code> suaviza las estimaciones de probabilidad, lo que puede ser útil para evitar el sobreajuste.</p></li>
+<li><p><strong>fit_prior:</strong> Indica si se deben aprender las probabilidades previas de las clases a partir de los datos de entrenamiento. Si se establece en <code class="docutils literal notranslate"><span class="pre">False</span></code>, se utilizarán probabilidades previas uniformes.</p></li>
+<li><p><strong>class_prior:</strong> Proporciona probabilidades previas específicas de las clases. Si no se especifica, se utilizarán probabilidades previas uniformes.</p></li>
+</ul>
+</section>
+</section>
+<section id="como-funciona-gradient-boosting">
+<h2>Cómo Funciona Gradient Boosting<a class="headerlink" href="#como-funciona-gradient-boosting" title="Link to this heading">#</a></h2>
+<p>Gradient Boosting es una técnica de aprendizaje automático que construye un modelo predictivo en forma de un conjunto de modelos de predicción débiles, generalmente árboles de decisión. A diferencia de Random Forest, que entrena cada árbol de forma independiente, Gradient Boosting entrena cada árbol de forma secuencial, mejorando los errores de los árboles anteriores.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>El término “Gradient Boosting” se refiere a la técnica de optimización utilizada para minimizar la función de pérdida del modelo, ajustando los parámetros del modelo en la dirección que reduce el gradiente de la función de pérdida.</p>
+</div>
+<section id="principios-fundamentales-de-gradient-boosting">
+<h3>Principios Fundamentales de Gradient Boosting<a class="headerlink" href="#principios-fundamentales-de-gradient-boosting" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Modelos de Predicción Débiles:</strong> En Gradient Boosting, los modelos de predicción débiles, como árboles de decisión poco profundos, se combinan para formar un modelo más fuerte. Cada árbol se enfoca en corregir los errores de los árboles anteriores, en lugar de predecir directamente la variable objetivo.</p></li>
+<li><p><strong>Optimización Secuencial:</strong> A diferencia de Random Forest, donde los árboles se entrenan de forma independiente, en Gradient Boosting, los árboles se entrenan secuencialmente. Cada árbol se ajusta para minimizar la función de pérdida del modelo, que mide la diferencia entre las predicciones del modelo y los valores reales.</p></li>
+<li><p><strong>Uso de Gradientes:</strong> El algoritmo de Gradient Boosting utiliza gradientes de la función de pérdida para ajustar los parámetros del modelo en la dirección que minimiza la pérdida. Este enfoque de optimización basado en gradientes permite que el modelo mejore gradualmente a medida que se agregan más árboles.</p></li>
+</ol>
+</section>
+<section id="visualizacion-del-algoritmo-gradient-boosting">
+<h3>Visualización del Algoritmo Gradient Boosting<a class="headerlink" href="#visualizacion-del-algoritmo-gradient-boosting" title="Link to this heading">#</a></h3>
+<p>Imagina que estás subiendo una colina y quieres llegar a la cima lo más rápido posible. En lugar de elegir la ruta más corta de antemano, decides dar pequeños pasos en la dirección que te lleva más alto en cada paso. Este enfoque te permite avanzar gradualmente hacia la cima, incluso si no puedes ver la cima desde tu posición actual.</p>
+<img alt="Gradient Boosting Algorithm" class="align-center" src="images/Gradient_Boosting.png" />
+<p>Gradient Boosting sigue un enfoque similar, mejorando el modelo de forma incremental en lugar de intentar ajustar todos los parámetros de una vez. Cada árbol de decisión se enfoca en corregir los errores de los árboles anteriores, lo que resulta en un modelo final que es una combinación ponderada de todos los árboles.</p>
+</section>
+<section id="aplicaciones-y-ventajas-de-gradient-boosting">
+<h3>Aplicaciones y Ventajas de Gradient Boosting<a class="headerlink" href="#aplicaciones-y-ventajas-de-gradient-boosting" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Clasificación y Regresión:</strong> Gradient Boosting es efectivo tanto para problemas de clasificación como de regresión, y es especialmente útil cuando se requiere un alto nivel de precisión.</p></li>
+<li><p><strong>Manejo de Datos Desbalanceados:</strong> Debido a su capacidad para ajustar los errores de los modelos anteriores, Gradient Boosting puede manejar eficazmente conjuntos de datos desbalanceados.</p></li>
+<li><p><strong>Interpretación de Características:</strong> Aunque Gradient Boosting es un modelo complejo, se pueden utilizar técnicas como la importancia de las características para comprender qué características son más influyentes en las predicciones.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Implementación de gradient boosting</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+         0.0       1.00      1.00      1.00        20
+         1.0       0.95      0.95      0.95        20
+         2.0       0.95      0.95      0.95        20
+
+    accuracy                           0.97        60
+   macro avg       0.97      0.97      0.97        60
+weighted avg       0.97      0.97      0.97        60
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hiperparametros-importantes-de-gradient-boosting">
+<h3>Hiperparámetros Importantes de Gradient Boosting<a class="headerlink" href="#hiperparametros-importantes-de-gradient-boosting" title="Link to this heading">#</a></h3>
+<p>Gradient Boosting tiene varios hiperparámetros que pueden ajustarse para mejorar el rendimiento del modelo. Algunos de los hiperparámetros más importantes son:</p>
+<ul class="simple">
+<li><p><strong>n_estimators:</strong> Número de árboles de decisión que se utilizarán en el modelo. Un valor más alto de <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> puede mejorar la precisión del modelo, pero también aumenta el riesgo de sobreajuste.</p></li>
+<li><p><strong>learning_rate:</strong> Tasa de aprendizaje que controla la contribución de cada árbol al modelo. Un valor más bajo de <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code> requerirá más árboles para alcanzar la misma precisión, pero puede mejorar la generalización.</p></li>
+<li><p><strong>max_depth:</strong> Profundidad máxima de cada árbol de decisión. Un valor más alto de <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> permitirá que los árboles sean más complejos, lo que puede llevar a un sobreajuste.</p></li>
+<li><p><strong>subsample:</strong> Proporción de muestras utilizadas para entrenar cada árbol. Un valor más bajo de <code class="docutils literal notranslate"><span class="pre">subsample</span></code> puede reducir el riesgo de sobreajuste, pero también puede disminuir la precisión del modelo.</p></li>
+</ul>
+</section>
+</section>
+<section id="como-funcionan-las-redes-neuronales-artificiales">
+<h2>Cómo Funcionan las Redes Neuronales Artificiales<a class="headerlink" href="#como-funcionan-las-redes-neuronales-artificiales" title="Link to this heading">#</a></h2>
+<p>Las Redes Neuronales Artificiales (ANN) son un modelo de aprendizaje profundo inspirado en la estructura y el funcionamiento del cerebro humano. Estas redes están compuestas por capas de neuronas artificiales que se organizan en una arquitectura de red, con conexiones entre las neuronas que transmiten señales y aprenden a partir de los datos.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>El término “profundo” en el aprendizaje profundo se refiere a la presencia de múltiples capas ocultas en la red neuronal, lo que permite que el modelo aprenda representaciones jerárquicas de los datos.</p>
+</div>
+<section id="principios-fundamentales-de-las-redes-neuronales">
+<h3>Principios Fundamentales de las Redes Neuronales<a class="headerlink" href="#principios-fundamentales-de-las-redes-neuronales" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Neuronas Artificiales:</strong> Las neuronas artificiales son unidades computacionales que reciben entradas, aplican una transformación no lineal a esas entradas y generan una salida. Cada neurona está conectada a otras neuronas a través de conexiones ponderadas.</p></li>
+<li><p><strong>Capas de Neuronas:</strong> Las neuronas en una red neuronal se organizan en capas, que incluyen una capa de entrada, una o más capas ocultas y una capa de salida. Las capas ocultas permiten que la red aprenda representaciones complejas de los datos.</p></li>
+<li><p><strong>Conexiones Ponderadas:</strong> Las conexiones entre las neuronas tienen pesos asociados que se ajustan durante el proceso de entrenamiento. Estos pesos determinan la importancia de las entradas para la salida de la neurona.</p></li>
+</ol>
+</section>
+<section id="entrenamiento-de-redes-neuronales">
+<h3>Entrenamiento de Redes Neuronales<a class="headerlink" href="#entrenamiento-de-redes-neuronales" title="Link to this heading">#</a></h3>
+<p>El entrenamiento de una red neuronal implica dos fases clave: propagación hacia adelante (forward propagation) y retropropagación (backpropagation). Durante la propagación hacia adelante, las entradas se pasan a través de la red, y las salidas se calculan utilizando los pesos actuales. Durante la retropropagación, se calculan los gradientes de la función de pérdida con respecto a los pesos de la red, y estos gradientes se utilizan para ajustar los pesos a través de un proceso de optimización.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>El proceso de retropropagación es fundamental para el entrenamiento de redes neuronales, ya que permite que la red ajuste los pesos de manera que minimice la función de pérdida, mejorando así la precisión del modelo.</p>
+</div>
+</section>
+<section id="aplicaciones-y-ventajas-de-las-redes-neuronales">
+<h3>Aplicaciones y Ventajas de las Redes Neuronales<a class="headerlink" href="#aplicaciones-y-ventajas-de-las-redes-neuronales" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Visión por Computadora:</strong> Las redes neuronales convolucionales (CNN) son ampliamente utilizadas en tareas de visión por computadora, como la clasificación de imágenes y la detección de objetos.</p></li>
+<li><p><strong>Procesamiento del Lenguaje Natural:</strong> Las redes neuronales recurrentes (RNN) y las redes neuronales transformadoras (Transformer) son efectivas en tareas de procesamiento del lenguaje natural, como la traducción automática y la generación de texto.</p></li>
+<li><p><strong>Reconocimiento de Voz:</strong> Las redes neuronales son fundamentales en sistemas de reconocimiento de voz, como los asistentes virtuales y los sistemas de transcripción de voz a texto.</p></li>
+<li><p><strong>Aprendizaje Profundo:</strong> Las redes neuronales son la base del aprendizaje profundo, un subcampo del aprendizaje automático que se centra en modelos de múltiples capas para aprender representaciones jerárquicas de los datos.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Entrenamiento de una red neuronal</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+         0.0       0.00      0.00      0.00        20
+         1.0       0.00      0.00      0.00        20
+         2.0       0.33      1.00      0.50        20
+
+    accuracy                           0.33        60
+   macro avg       0.11      0.33      0.17        60
+weighted avg       0.11      0.33      0.17        60
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\cizai\miniconda3\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+C:\Users\cizai\miniconda3\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+C:\Users\cizai\miniconda3\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusiones">
+<h2>Conclusiones<a class="headerlink" href="#conclusiones" title="Link to this heading">#</a></h2>
+<p>En este capítulo, exploramos varios modelos de clasificación supervisada, incluidos Support Vector Machines (SVM), Naive Bayes, Gradient Boosting y Redes Neuronales Artificiales. Cada uno de estos modelos tiene sus propias fortalezas y aplicaciones, y es importante comprender cómo funcionan y cuándo es apropiado utilizarlos.</p>
 </section>
 </section>
 
@@ -919,9 +954,29 @@ weighted avg       0.95      0.95      0.95        60
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principios-fundamentales-de-svm">Principios Fundamentales de SVM</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-algoritmo-svm">Visualización del Algoritmo SVM</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-importantes-de-svm">Hipérparámetros Importantes de SVM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes">Naive Bayes</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funciona-naive-bayes">Cómo Funciona Naive Bayes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamentos-detallados-de-naive-bayes">Fundamentos Detallados de Naive Bayes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-extendidas-de-naive-bayes">Aplicaciones Extendidas de Naive Bayes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-intuitivo-y-visual">Ejemplo Intuitivo y Visual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-de-naive-bayes">Hiperparámetros de Naive Bayes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funciona-gradient-boosting">Cómo Funciona Gradient Boosting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principios-fundamentales-de-gradient-boosting">Principios Fundamentales de Gradient Boosting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-algoritmo-gradient-boosting">Visualización del Algoritmo Gradient Boosting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-y-ventajas-de-gradient-boosting">Aplicaciones y Ventajas de Gradient Boosting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-importantes-de-gradient-boosting">Hiperparámetros Importantes de Gradient Boosting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funcionan-las-redes-neuronales-artificiales">Cómo Funcionan las Redes Neuronales Artificiales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principios-fundamentales-de-las-redes-neuronales">Principios Fundamentales de las Redes Neuronales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenamiento-de-redes-neuronales">Entrenamiento de Redes Neuronales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-y-ventajas-de-las-redes-neuronales">Aplicaciones y Ventajas de las Redes Neuronales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">Conclusiones</a></li>
 </ul>
   </nav></div>
 
