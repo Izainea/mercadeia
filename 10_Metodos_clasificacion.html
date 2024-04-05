@@ -505,7 +505,11 @@ document.write(`
 <p>SVM se destaca por su efectividad en espacios de alta dimensión y su capacidad para manejar fronteras de decisión complejas y no lineales, gracias al uso de funciones kernel. Este enfoque, centrado en la maximización del margen y en la importancia crítica de los vectores de soporte, permite que SVM sea altamente efectivo y preciso en la clasificación, incluso en situaciones donde la relación entre las características no es inmediatamente evidente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Ejemplo sencillo </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Importamos warnings para evitar los mensajes de advertencia</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="c1">## Ejemplo sencillo </span>
 
 <span class="c1">## Dataset de prueba [Iris]</span>
 
@@ -875,14 +879,6 @@ weighted avg       0.97      0.97      0.97        60
     accuracy                           0.33        60
    macro avg       0.11      0.33      0.17        60
 weighted avg       0.11      0.33      0.17        60
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\cizai\miniconda3\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
-C:\Users\cizai\miniconda3\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
-C:\Users\cizai\miniconda3\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
 </pre></div>
 </div>
 </div>
